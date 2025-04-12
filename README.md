@@ -18,6 +18,8 @@
 
 ## Giriş
 
+> **⚠️ Dikkat:** Bu kitap özeti pratik amaçlıdır ve kapsamlı bir referans kaynağı olarak düşünülmemelidir. Go ile RESTful web servisleri geliştirirken resmi Go dokümantasyonuna başvurmayı unutmayın.
+
 ### RESTful API Kavramları
 
 #### Web Servislerinin Temel Kavramları
@@ -30,7 +32,7 @@ Basit bir ifadeyle, web servisi iki uç nokta arasında mesajların sorunsuz akt
 #### Günümüz dijital dünyasında API'lerin önemi nedir? 
 Nesnelerin İnterneti'nin (IoT) yükselişi, API kullanımını daha da yoğunlaştırmıştır. API farkındalığı her geçen gün artmakta ve dünya çapında her gün yüzlerce API geliştirilmekte ve belgelenmektedir. Önemli büyük işletmeler "API as a Service" (AAAS) modeline yönelmektedir. Amazon Web Services (AWS), bulut dünyasında bunun en başarılı örneklerinden biridir. Geliştiriciler, AWS tarafından sağlanan REST API'lerini kullanarak kendi uygulamalarını geliştirmektedir.
 
-
+**AWS REST API Örneği:** `https://docs.aws.amazon.com/apigateway/api-reference/` - AWS API Gateway ile kendi REST API'lerinizi oluşturabilir, S3 API (`https://docs.aws.amazon.com/AmazonS3/latest/API/APIRest.html`) veya DynamoDB API (`https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/Welcome.html`) gibi AWS hizmetlerine erişim sağlayabilirsiniz.
 
 #### REST Nedir?
 REST (Representational State Transfer), web servisleri için bir mimari stildir. RESTful API'ler, HTTP protokolünü kullanarak istemci ve sunucu arasında veri ve işlevselliği paylaşmak için tasarlanmıştır.
@@ -171,6 +173,8 @@ Yazılım geliştiricisi olarak, çoğu zaman bu altı fiil ile çalışacaksın
 | DELETE | Verilen kaynağı siler | 200 | 404 |
 
 "Başarı" ve "Başarısızlık" sütunlarındaki sayılar HTTP durum kodlarıdır. Bir istemci bir REST işlemi başlattığında, REST durumsuz olduğundan, istemci işlemin başarılı olup olmadığını anlayacak bir yol bilmelidir. Bu nedenle, HTTP yanıt için durum kodlarına sahiptir. REST, belirli bir işlem için yukarıdaki durum kodu türlerini tanımlar. Bu, istemci-sunucu iletişimini sağlamak için REST API'nin yukarıdaki kurallara sıkı bir şekilde uyması gerektiği anlamına gelir.
+
+> **⚠️ Uyarı:** REST API'lerinizi tasarlarken HTTP durum kodlarının doğru kullanımı kritik öneme sahiptir! Yanlış durum kodları istemci-sunucu iletişimini bozabilir ve uygulamanızda beklenmeyen hatalara yol açabilir.
 
 #### REST API URI Yapısı
 
@@ -551,18 +555,16 @@ API tasarım belgesinin blok yapısı şu şekilde görünebilir:
 
 Şimdi yukarıdaki basit API'yi adım adım uygulayacağız.
 
-Bu projenin kodu şu adreste bulunabilir: https://github.com/narenaryan/gorestful
 
-Daha önce tartıştığımız gibi, önce GOPATH'i ayarlamalısınız. GOPATH'in /home/naren/go olduğunu varsayalım. Aşağıdaki yolda romanserver adlı bir dizin oluşturun. narenaryan'ı kendi GitHub kullanıcı adınızla değiştirin (bu sadece farklı kullanıcılara ait kod için bir isim alanıdır):
+Daha önce tartıştığımız gibi, önce GOPATH'i ayarlamalısınız. GOPATH'in /home/naren/go olduğunu varsayalım. Aşağıdaki yolda romanserver adlı bir dizin oluşturun. ibrahimbayburtlu'yu kendi GitHub kullanıcı adınızla değiştirin (bu sadece farklı kullanıcılara ait kod için bir isim alanıdır):
 
 ```bash
-mkdir -p $GOPATH/src/github.com/narenaryan/romanserver
+mkdir -p $GOPATH/src/github.com/ibrahimbayburtlu/romanserver
 ```
 
-Projemiz hazır. Henüz yapılandırılmış bir veritabanımız yok. main.go adlı boş bir dosya oluşturun:
-
-```bash
-touch $GOPATH/src/github.com/narenaryan/romanserver/main.go
+Romanserver içinde, main.go adlı bir dosya oluşturun:
+```
+touch $GOPATH/src/github.com/ibrahimbayburtlu/romanserver/main.go
 ```
 
 API sunucusu için ana mantığımız bu dosyaya gidecek. Şimdilik, ana programımız için veri hizmeti olarak çalışacak bir veri dosyası oluşturabiliriz. Roma rakamları için verileri oluşturun:
@@ -597,7 +599,7 @@ package main
 
 import (
     "fmt"
-    "github.com/narenaryan/romanNumerals"
+    "github.com/ibrahimbayburtlu/romanNumerals"
     "html"
     "net/http"
     "strconv"
@@ -652,12 +654,12 @@ Bu kodda şunları yapıyoruz:
 Go kodunuzu biçimlendirmek için her zaman Go fmt aracını kullanın.
 Kullanım örneği: 
 ```bash
-go fmt github.com/narenaryan/romanserver
+go fmt github.com/ibrahimbayburtlu/romanserver
 ```
 
 Şimdi, bu projeyi Go'nun install komutu ile kuralım:
 ```bash
-go install github.com/narenaryan/romanserver
+go install github.com/ibrahimbayburtlu/romanserver
 ```
 
 Bu komut, projemizi derleyecek ve GOPATH içindeki bin dizinine yürütülebilir bir dosya oluşturacaktır. Artık servisimizi doğrudan çalıştırabiliriz.
@@ -673,7 +675,7 @@ $GOPATH/bin/romanserver
 Alternatif olarak, Go run komutunu kullanarak da servisi başlatabilirsiniz:
 
 ```bash
-cd $GOPATH/src/github.com/narenaryan/romanserver
+cd $GOPATH/src/github.com/ibrahimbayburtlu/romanserver
 go run main.go
 ```
 
@@ -740,7 +742,7 @@ Oluşturduğumuz servis şu yeteneklere sahiptir:
 
 Boş dosyaları bir seferde güncelledik ve sunucuyu çalıştırmaya başladık. Şimdi main.go dosyasının her bir parçasını açıklayalım:
 
-1. **Paketlerin İçe Aktarılması**: Birkaç paket içe aktarıldı. `github.com/narenaryan/romanNumerals`, daha önce oluşturduğumuz veri hizmetidir.
+1. **Paketlerin İçe Aktarılması**: Birkaç paket içe aktarıldı. `github.com/ibrahimbayburtlu/romanNumerals`, daha önce oluşturduğumuz veri hizmetidir.
 
 2. **HTTP Paketi**: `net/http`, HandleFunc fonksiyonu aracılığıyla HTTP isteklerini işlemek için kullandığımız temel pakettir. Bu fonksiyonun argümanları `http.Request` ve `http.ResponseWriter`'dır. Bu ikisi, bir HTTP isteğinin istek ve yanıtıyla ilgilenir.
 
@@ -856,7 +858,7 @@ Gulp, otomatik kod derleme ve sunucu yeniden yükleme işlemleri için kullanabi
 npm install gulp gulp-shell
 ```
 
-Ardından, projenin kök dizininde bir gulpfile.js oluşturun. Bu durumda, github.com/src/narenaryan/romanserver dizini olacaktır. Şimdi gulpfile.js'e aşağıdaki içeriği ekleyin:
+Ardından, projenin kök dizininde bir gulpfile.js oluşturun. Bu durumda, github.com/src/ibrahimbayburtlu/romanserver dizini olacaktır. Şimdi gulpfile.js'e aşağıdaki içeriği ekleyin:
 
 ```javascript
 var gulp = require("gulp");
@@ -864,7 +866,7 @@ var shell = require('gulp-shell');
 
 // Bu, kaynak değişikliğiyle yeni ikili dosya derler
 gulp.task("install-binary", shell.task([
- 'go install github.com/narenaryan/romanserver'
+ 'go install github.com/ibrahimbayburtlu/romanserver'
 ]));
 
 // İkinci argüman, restart-supervisor için install-binary'nin bir bağımlılık olduğunu belirtir
