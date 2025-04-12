@@ -1,0 +1,16 @@
+{
+  "name": "romanserver",
+  "version": "1.0.0",
+  "description": "REST API for Roman Numerals",
+  "main": "main.go",
+  "scripts": {
+    "start": "go run main.go",
+    "test": "go test"
+  },
+  "author": "Ibrahim Bayburtlu",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-shell": "^0.6.3"
+  }
+}
