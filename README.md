@@ -14,11 +14,9 @@
 
 ---
 
-# REST API Geliştirmeye Başlangıç
+# Bölüm 1: REST API Geliştirmeye Başlangıç
 
 ## Giriş
-
-
 
 ### RESTful API Kavramları
 
@@ -304,29 +302,7 @@ Eğer bar.com, başlangıçtaki bu istekten sonra kaynaklarını herhangi bir su
 
 Aşağıdaki diyagram, bu işlemlerin birbirini takip eden adımlarını göstermektedir:
 
-```
-+------------+                                  +------------+
-|            |                                  |            |
-|            |           OPTIONS                |            |
-|            |        HTTP REQUEST              |            |
-|            |  --------------------------->    |            |
-|            |                                  |            |
-|   Client   |                                  |   Server   |
-|            |          Response                |            |
-| (foo.com)  |  Access-Control-Allow-Origin:    | (bar.com)  |
-|            |        http://foo.com            |            |
-|            |  <---------------------------    |            |
-|            |                                  |            |
-|            |       GET /v1/books/1256         |            |
-|            |  --------------------------->    |            |
-|            |                                  |            |
-|            |         Response 200 OK          |            |
-|            |  <---------------------------    |            |
-|            |                                  |            |
-+------------+                                  +------------+
-
-         Cross Origin Resource Sharing
-```
+![CQRS Modeli](chapter-1/photos/CQRS.png)
 
 Bu diyagram, istemci (foo.com) ve sunucu (bar.com) arasındaki CORS iletişimini göstermektedir. İlk olarak istemci, OPTIONS isteği ile sunucunun CORS politikasını sorgular. Sunucu, Access-Control-Allow-Origin başlığı ile foo.com'un erişimine izin verdiğini belirtir. Bundan sonra istemci, GET isteği ile kaynaklara erişebilir ve sunucu 200 OK yanıtı ile başarılı bir şekilde yanıt verir.
 
@@ -397,6 +373,7 @@ Durum kodları hakkında daha fazla bilgi için şu bağlantıyı ziyaret edebil
 
 #### REST API ile Tek Sayfa Uygulamalarının Yükselişi
 
+
 Günümüzde Tek Sayfa Uygulamalarının (SPA) neden bu kadar popüler olduğunu anlamanız gerekir. Geleneksel yöntemle (web sayfaları isteme) kullanıcı arayüzü oluşturmak yerine, bu SPA tasarımları geliştiricilerin kodu tamamen farklı bir şekilde yazmasını sağlar. 
 
 Web kullanıcı arayüzlerini hızlı bir şekilde geliştirmek için AngularJS, Angular2, React JS, Knockout JS, Aurelia gibi birçok MVC çerçevesi vardır, ancak bunların her birinin özü oldukça basittir. Tüm MVC çerçeveleri, bir tasarım desenini uygulamamıza yardımcı olur. Bu tasarım deseni "Web sayfaları isteme, sadece REST API kullan" şeklindedir.
@@ -438,14 +415,16 @@ Ancak Tek Sayfa Uygulamalarında (SPA) akış oldukça farklıdır:
 3. Modeldeki (JSON) verilere göre kullanıcı arayüzünü düzenle.
 4. Kullanıcılar kullanıcı arayüzünü değiştirdiğinde, model (veri nesnesi) otomatik olarak değişmelidir. Örneğin, AngularJS'de bu çift yönlü veri bağlama (two-way data binding) ile mümkündür. Son olarak, değişiklikleri sunucuya bildirmek için istediğiniz zaman REST API çağrıları yap.
 
+![SPA Mimarisi](chapter-1/photos/SPA.png)
+
 Bu şekilde, iletişim yalnızca REST API biçiminde gerçekleşir. İstemci, verileri mantıksal olarak temsil etme görevini üstlenir. Bu durum, sistemlerin Yanıt Odaklı Mimariden (Response Oriented Architecture - ROA) Servis Odaklı Mimariye (Service Oriented Architecture - SOA) geçmesine neden olur.
 
 Bu mimari değişim, web uygulamalarının geliştirme, bakım ve ölçeklendirme süreçlerini büyük ölçüde etkilemiştir. SPA modelinde sunucu tarafı, verileri ve iş mantığını sağlamakla görevli olurken, istemci tarafı kullanıcı deneyimini ve veri sunumunu yönetir. Bu ayrım, hem frontend hem de backend geliştiricilerinin kendi uzmanlık alanlarında daha etkili çalışmalarına olanak tanır.
 
 ---
 
-
 ### Go Neden REST API Geliştirmesi İçin Tercih Edilir?
+
 
 Modern web dünyasında REST servisleri artık sıradan bir hale gelmiştir. SOA (Servis Odaklı Mimari - daha sonra detaylı olarak ele alacağız), web geliştirmeyi bir sonraki seviyeye taşımak için REST servislerine bir faaliyet alanı oluşturdu. Go, Google'ın karşılaştığı daha büyük problemleri çözmek için geliştirdiği bir programlama dilidir. İlk ortaya çıkışından bu yana sekiz yıldan fazla bir süre geçti. Bu süre içinde olgunlaştı ve geliştirici topluluğunun katılımıyla büyük ölçekli sistemler oluşturuldu.
 
@@ -967,4 +946,5 @@ Gulp, bu tür kullanım durumları için harika bir araçtır. Bu nedenle, lütf
 ## Öğrenilen Dersler ve İyi Uygulamalar
 *(Kitabın tamamını okuduktan sonra, öğrendiğiniz temel dersler ve izlediğiniz en iyi uygulamaları burada özetleyebilirsiniz)*
 
+---
 ---
