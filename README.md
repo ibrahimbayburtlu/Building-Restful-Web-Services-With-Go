@@ -444,7 +444,6 @@ Bu mimari değişim, web uygulamalarının geliştirme, bakım ve ölçeklendirm
 
 ---
 
-## Bölüm 2: Go ile RESTful API'ler Geliştirme
 
 ### Go Neden REST API Geliştirmesi İçin Tercih Edilir?
 
@@ -923,6 +922,9 @@ Gulpfile'da aşağıdaki talimatları gerçekleştiriyoruz:
 Gulp, bu tür kullanım durumları için harika bir araçtır. Bu nedenle, lütfen Gulp'ın resmi belgelerini http://gulpjs.com/ adresinden inceleyin.
 
 ---
+
+## Bölüm 2: Go ile RESTful API'ler Geliştirme
+
 
 ## Bölüm 3: Veritabanı Entegrasyonu
 *(Kitabın bu bölümünü okuduğunuzda doldurulacak)*
